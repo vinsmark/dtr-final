@@ -16,42 +16,58 @@
 
     <nav class="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
 
-        <a href="#" class="flex items-center px-4 py-2.5 text-sm font-semibold rounded-xl active-nav text-white">
+        {{-- Dashboard --}}
+        <a href="{{ route('dashboard') }}" wire:navigate
+            class="flex items-center px-4 py-2.5 text-sm font-semibold rounded-xl transition-all
+        {{ request()->routeIs('dashboard') ? 'active-nav text-white' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
+
             <i class="fa-solid fa-gauge-high mr-3 w-4 text-sm"></i> Dashboard
         </a>
 
         <p class="pt-6 pb-1.5 px-4 text-[9px] font-bold text-[#8AB85A]/40 uppercase tracking-widest">Workforce</p>
 
-        <a href="#"
-            class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
-            <i class="fa-solid fa-users mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
+        {{-- Employees --}}
+        <a href="{{ route('employees') }}" wire:navigate
+            class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
+        {{ request()->routeIs('employees') ? 'active-nav text-white' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
+
+            <i class="fa-solid fa-users mr-3 w-4 text-sm transition-colors
+        {{ request()->routeIs('employees') ? 'text-white' : 'group-hover:text-[#8AB85A]' }}"></i>
             Employees
         </a>
+
+        {{-- Attendance --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
             <i class="fa-solid fa-calendar-check mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
             Attendance
         </a>
+
+        {{-- Leave --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
             <i class="fa-solid fa-umbrella-beach mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
             Leave Requests
             <span class="ml-auto bg-[#C8823A] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">5</span>
         </a>
+
+        {{-- Org Chart --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
-            <i class="fa-solid fa-sitemap mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i> Org
-            Chart
+            <i class="fa-solid fa-sitemap mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
+            Org Chart
         </a>
 
-        <p class="pt-6 pb-1.5 px-4 text-[9px] font-bold text-[#8AB85A]/40 uppercase tracking-widest">Compensation
-        </p>
+        <p class="pt-6 pb-1.5 px-4 text-[9px] font-bold text-[#8AB85A]/40 uppercase tracking-widest">Compensation</p>
 
+        {{-- Payroll --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
             <i class="fa-solid fa-peso-sign mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
             Payroll
         </a>
+
+        {{-- Benefits --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
             <i class="fa-solid fa-hand-holding-heart mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
@@ -60,16 +76,21 @@
 
         <p class="pt-6 pb-1.5 px-4 text-[9px] font-bold text-[#8AB85A]/40 uppercase tracking-widest">Growth</p>
 
+        {{-- Performance --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
             <i class="fa-solid fa-star-half-stroke mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
             Performance
         </a>
+
+        {{-- Training --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
             <i class="fa-solid fa-person-chalkboard mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
             Training
         </a>
+
+        {{-- Recruitment --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
             <i
