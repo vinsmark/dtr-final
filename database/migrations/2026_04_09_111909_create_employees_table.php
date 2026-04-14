@@ -50,6 +50,7 @@ return new class extends Migration
             $table->string('prefered_sex')->nullable();
             $table->dateTime('fiesta_date')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

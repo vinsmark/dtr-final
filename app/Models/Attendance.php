@@ -20,6 +20,4 @@ class Attendance extends Model
     protected $casts = [
         'log_time' => 'datetime',
     ];
-
-    
 }

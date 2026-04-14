@@ -45,9 +45,12 @@
             Users
         </a>
         {{-- Attendance --}}
-        <a href="#"
-            class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
-            <i class="fa-solid fa-calendar-check mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
+        <a href="{{ route('attendances.index') }}" wire:navigate
+            class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
+            {{ request()->routeIs('attendances.index') ? 'active-nav text-white' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
+
+            <i class="fa-solid fa-fingerprint mr-3 w-4 text-sm transition-colors
+            {{ request()->routeIs('attendances.index') ? 'text-white' : 'group-hover:text-[#8AB85A]' }}"></i>
             Attendance
         </a>
 

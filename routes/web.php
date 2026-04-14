@@ -3,6 +3,7 @@
 use App\Enums\UserRole;
 use App\Livewire\AdminDashboard;
 use App\Livewire\AttendanceReport;
+use App\Livewire\Attendances;
 use App\Livewire\Employees;
 use App\Livewire\EmployeeUpload;
 use App\Livewire\RecordManager;
@@ -34,7 +35,7 @@ Route::get('/records', RecordManager::class);
 Route::get('/attendance', AttendanceReport::class)->name('attendance.report');
 Route::get('/employees/upload', EmployeeUpload::class)->name('employees.upload');
 Route::get('employees', Employees::class)->name('employees');
-
+Route::get('/attendances', Attendances::class)->name('attendances.index');
 Route::get('/upload-attendance', UploadAttendance::class);
 
 Route::get('/users', Users::class)->name('users.index');

@@ -64,7 +64,7 @@
 
     @include('layouts.partials.mobile-notification')
 
-    @livewireScripts()
+    @livewireScripts
 </body>
 
 </html>
