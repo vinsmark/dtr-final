@@ -4,6 +4,7 @@ use App\Enums\UserRole;
 use App\Livewire\AdminDashboard;
 use App\Livewire\AttendanceReport;
 use App\Livewire\Attendances;
+use App\Livewire\DtrReport;
 use App\Livewire\Employees;
 use App\Livewire\EmployeeUpload;
 use App\Livewire\RecordManager;
@@ -39,5 +40,5 @@ Route::get('/attendances', Attendances::class)->name('attendances.index');
 Route::get('/upload-attendance', UploadAttendance::class);
 
 Route::get('/users', Users::class)->name('users.index');
-
+Route::get('/dtr', DtrReport::class)->name('dtr');
 require __DIR__.'/settings.php';

@@ -32,15 +32,12 @@ class Attendances extends Component
                 continue;
             }
 
-            // Split on tabs first
             $data = preg_split('/\t+/', trim($row));
 
-            // Fallback to multiple spaces
             if (count($data) < 3) {
                 $data = preg_split('/\s{2,}/', trim($row));
             }
 
-            // Last fallback: any whitespace
             if (count($data) < 3) {
                 $data = preg_split('/\s+/', trim($row));
             }
@@ -48,7 +45,6 @@ class Attendances extends Component
             if (count($data) >= 3) {
                 $employee_code = trim($data[0]);
 
-                // Column 1 is already "date time" combined (e.g. "2026-03-16 02:00:45")
                 if (str_contains(trim($data[1]), ' ')) {
                     $full_timestamp = trim($data[1]);
                     $state = isset($data[2]) ? trim($data[2]) : null;
@@ -56,7 +52,6 @@ class Attendances extends Component
                     $verification = isset($data[4]) ? trim($data[4]) : null;
                     $work_code = isset($data[5]) ? trim($data[5]) : null;
                 } else {
-                    // Separate date and time columns
                     $full_timestamp = trim($data[1]).' '.trim($data[2]);
                     $state = isset($data[3]) ? trim($data[3]) : null;
                     $device_id = isset($data[4]) ? trim($data[4]) : null;

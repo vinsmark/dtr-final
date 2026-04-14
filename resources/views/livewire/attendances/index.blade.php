@@ -5,7 +5,6 @@
     </div>
     @endif
 
-    {{-- Import Form (no modal) --}}
     <div class="rounded-xl border border-[#D4C4A8] bg-white p-6">
         <p class="mb-4 text-[10px] font-black uppercase tracking-widest text-[#180C04]">
             <i class="fa-solid fa-file-import mr-2 text-[#4A7A28]"></i> Import Attendance Logs
@@ -61,7 +60,6 @@
         </form>
     </div>
 
-    {{-- Attendance Table --}}
     <x-table.container title="Attendance Logs" :count="$attendances->count()" :total="$attendances->total()">
         <x-slot:actions>
             <div class="relative w-full sm:w-48">

@@ -11,6 +11,18 @@ class Employee extends Model
 
     protected $guarded = [];
 
+    protected $table = 'employees';
+
+    public function getFullNameAttribute(): string
+    {
+        return trim($this->lastname.', '.$this->firstname.' '.$this->middlename);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class, 'employee_code', 'employee_code');
+    }
+
     protected $casts = [
         'date_for_employment' => 'date',
         'pagibig_date_from' => 'date',
