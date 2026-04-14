@@ -16,7 +16,7 @@
 
     <nav class="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
 
-        <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('user.dashboard') }}"
+        <a href="{{ auth()->user()?->role === 'admin' ? route('admin.dashboard') : route('user.dashboard') }}"
             wire:navigate class="flex items-center px-4 py-2.5 text-sm font-semibold rounded-xl transition-all
             {{ request()->routeIs('dashboard') || request()->routeIs('admin.dashboard') || request()->routeIs('user.dashboard')
             ? 'active-nav text-white'
@@ -35,7 +35,6 @@
         {{ request()->routeIs('employees') ? 'text-white' : 'group-hover:text-[#8AB85A]' }}"></i>
             Employees
         </a>
-        {{-- Users --}}
         <a href="{{ route('users.index') }}" wire:navigate
             class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
         {{ request()->routeIs('users.index') ? 'active-nav text-white' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
@@ -44,7 +43,6 @@
         {{ request()->routeIs('users.index') ? 'text-white' : 'group-hover:text-[#8AB85A]' }}"></i>
             Users
         </a>
-        {{-- Attendance --}}
         <a href="{{ route('attendances.index') }}" wire:navigate
             class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
             {{ request()->routeIs('attendances.index') ? 'active-nav text-white' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
@@ -71,7 +69,6 @@
 
             Holidays
         </a>
-        {{-- Leave --}}
         <a href="{{ route('leaves') }}" wire:navigate
             class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
         {{ request()->routeIs('leaves') ? 'active-nav text-white bg-white/[0.1]' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
@@ -81,11 +78,14 @@
 
             Leaves
         </a>
-        {{-- Org Chart --}}
-        <a href="#"
-            class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
-            <i class="fa-solid fa-sitemap mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
-            Org Chart
+        <a href="{{ route('overtime') }}" wire:navigate
+            class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
+        {{ request()->routeIs('overtime') ? 'active-nav text-white bg-white/[0.1]' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
+
+            <i class="fa-solid fa-clock-rotate-left mr-3 w-4 text-sm transition-colors
+        {{ request()->routeIs('overtime') ? 'text-white' : 'group-hover:text-[#8AB85A]' }}"></i>
+
+            Overtime
         </a>
 
         <p class="pt-6 pb-1.5 px-4 text-[9px] font-bold text-[#8AB85A]/40 uppercase tracking-widest">Compensation</p>
@@ -130,6 +130,7 @@
 
     </nav>
 
+    @auth
     <div class="p-3 border-t border-white/[0.07]">
         <div class="flex items-center gap-3 px-3 py-2.5 bg-white/[0.06] rounded-2xl">
             <div
@@ -149,5 +150,16 @@
 
             <i class="fa-solid fa-ellipsis-vertical ml-auto text-white/20 text-xs"></i>
         </div>
+    </div>
+    @endauth
+
+    @guest
+    <div class="p-3 border-t border-white/[0.07]">
+        <a href="{{ route('login') }}"
+            class="flex items-center gap-3 px-3 py-2.5 text-white/50 hover:text-white transition-all text-xs font-bold">
+            <i class="fa-solid fa-right-to-bracket"></i> Please Log In
+        </a>
+    </div>
+    @endguest
     </div>
 </aside>

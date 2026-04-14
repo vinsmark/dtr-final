@@ -14,7 +14,7 @@
     <div class="flex items-center gap-2" x-data="{ userOpen: false }">
 
         @include('layouts.partials.notification')
-
+        @auth
         <div class="relative" x-data="{ userOpen: false }">
             <button @click="userOpen = !userOpen"
                 class="flex items-center gap-2 p-1.5 pr-3 bg-white border border-[#D4C4A8] rounded-xl hover:bg-[#FAF7F2] transition-all">
@@ -66,6 +66,6 @@
                 </div>
             </div>
         </div>
-
+        @endauth
     </div>
 </header>
