@@ -59,7 +59,7 @@
                     <i class="fa-solid fa-seedling text-white text-sm"></i>
                 </div>
                 <div>
-                    <p class="text-sm font-bold tracking-tight leading-tight">NEW ASIA OIL</p>
+                    <p class="text-sm font-bold tracking-tight leading-tight">NEW ASIA OIL INC.</p>
                     <p class="text-[9px] font-semibold text-[#8AB85A]/70 uppercase tracking-widest">HR Information
                         System</p>
                 </div>
@@ -138,16 +138,22 @@
             <div class="flex items-center gap-3 px-3 py-2.5 bg-white/[0.06] rounded-2xl">
                 <div
                     class="w-8 h-8 rounded-lg bg-[#4A7A28]/30 text-[#8AB85A] flex items-center justify-center font-bold text-sm flex-shrink-0">
-                    A
+                    {{ Auth::user()->initials() }}
                 </div>
+
                 <div class="overflow-hidden">
-                    <p class="text-xs font-bold text-white truncate">HR Administrator</p>
-                    <p class="text-[9px] text-white/30 uppercase font-semibold tracking-wide">Full Access</p>
+                    <p class="text-xs font-bold text-white truncate">
+                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                    </p>
+
+                    <p class="text-[9px] text-white/30 uppercase font-semibold tracking-wide">
+                        {{ Auth::user()->role->value ?? Auth::user()->role }}
+                    </p>
                 </div>
+
                 <i class="fa-solid fa-ellipsis-vertical ml-auto text-white/20 text-xs"></i>
             </div>
         </div>
-
     </aside>
 
     <div class="lg:ml-64 flex flex-col min-h-screen">
@@ -248,12 +254,16 @@
                     </div>
                 </div>
 
-                <div class="relative">
+                <div class="relative" x-data="{ userOpen: false }">
                     <button @click="userOpen = !userOpen"
                         class="flex items-center gap-2 p-1.5 pr-3 bg-white border border-[#D4C4A8] rounded-xl hover:bg-[#FAF7F2] transition-all">
-                        <img src="https://ui-avatars.com/api/?name=Admin&background=2C1A0E&color=A8C47A"
-                            class="w-7 h-7 rounded-lg" alt="Admin Avatar">
-                        <span class="hidden sm:block text-xs font-semibold text-[#180C04]">Admin</span>
+                        <img src="https://ui-avatars.com/api/?name={{ urlencode(Auth::user()->first_name) }}&background=2C1A0E&color=A8C47A"
+                            class="w-7 h-7 rounded-lg" alt="{{ Auth::user()->first_name }} Avatar">
+
+                        <span class="hidden sm:block text-xs font-semibold text-[#180C04]">
+                            {{ Auth::user()->first_name }}
+                        </span>
+
                         <i class="fa-solid fa-chevron-down text-[9px] text-[#A89070]"></i>
                     </button>
 
@@ -261,11 +271,17 @@
                         x-transition:enter="transition ease-out duration-150"
                         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
                         class="absolute right-0 mt-3 w-60 bg-white rounded-2xl shadow-xl border border-[#D4C4A8] overflow-hidden">
+
                         <div class="p-4 bg-[#180C04] text-white">
-                            <p class="text-sm font-bold">HR Administrator</p>
-                            <p class="text-[10px] text-[#8AB85A] font-bold uppercase tracking-wider mt-0.5">Full Access
+                            <p class="text-sm font-bold">
+                                {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                            </p>
+
+                            <p class="text-[10px] text-[#8AB85A] font-bold uppercase tracking-wider mt-0.5">
+                                {{ Auth::user()->role->value ?? Auth::user()->role }}
                             </p>
                         </div>
+
                         <div class="p-2 space-y-0.5">
                             <a href="#"
                                 class="flex items-center px-4 py-2.5 text-sm font-medium text-[#3A1E08] hover:bg-[#FAF7F2] rounded-xl transition-all">
@@ -275,11 +291,17 @@
                                 class="flex items-center px-4 py-2.5 text-sm font-medium text-[#3A1E08] hover:bg-[#FAF7F2] rounded-xl transition-all">
                                 <i class="fa-solid fa-gear mr-3 text-[#4A7A28] w-4"></i> Settings
                             </a>
+
                             <div class="border-t border-[#F0E8DC] my-1"></div>
-                            <button
-                                class="w-full text-left flex items-center px-4 py-2.5 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl transition-all">
-                                <i class="fa-solid fa-power-off mr-3 w-4"></i> Logout
-                            </button>
+
+                            <form method="POST" action="{{ route('logout') }}" class="w-full">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left flex items-center px-4 py-2.5 text-sm font-bold text-red-500 hover:bg-red-50 rounded-xl transition-all">
+                                    <i class="fa-solid fa-power-off mr-3 w-4"></i>
+                                    {{ __('Log out') }}
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
