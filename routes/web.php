@@ -7,6 +7,9 @@ use App\Livewire\Attendances;
 use App\Livewire\DtrReport;
 use App\Livewire\Employees;
 use App\Livewire\EmployeeUpload;
+use App\Livewire\HolidayManager;
+use App\Livewire\LeaveManager;
+use App\Livewire\OvertimeManager;
 use App\Livewire\RecordManager;
 use App\Livewire\UploadAttendance;
 use App\Livewire\UserDashboard;
@@ -41,4 +44,7 @@ Route::get('/upload-attendance', UploadAttendance::class);
 
 Route::get('/users', Users::class)->name('users.index');
 Route::get('/dtr', DtrReport::class)->name('dtr');
+Route::get('/holidays', HolidayManager::class)->name('holidays');
+Route::get('/leaves', LeaveManager::class)->name('leaves');
+Route::get('/overtime', OvertimeManager::class)->name('overtime');
 require __DIR__.'/settings.php';

@@ -61,14 +61,26 @@
             {{ request()->routeIs('dtr') ? 'text-white' : 'group-hover:text-[#8AB85A]' }}"></i>
             DTR
         </a>
-        {{-- Leave --}}
-        <a href="#"
-            class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
-            <i class="fa-solid fa-umbrella-beach mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
-            Leave Requests
-            <span class="ml-auto bg-[#C8823A] text-white text-[10px] font-bold px-2 py-0.5 rounded-full">5</span>
-        </a>
 
+        <a href="{{ route('holidays') }}" wire:navigate
+            class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
+        {{ request()->routeIs('holidays') ? 'active-nav text-white bg-white/[0.1]' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
+
+            <i class="fa-solid fa-calendar-star mr-3 w-4 text-sm transition-colors
+        {{ request()->routeIs('holidays') ? 'text-white' : 'group-hover:text-[#8AB85A]' }}"></i>
+
+            Holidays
+        </a>
+        {{-- Leave --}}
+        <a href="{{ route('leaves') }}" wire:navigate
+            class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
+        {{ request()->routeIs('leaves') ? 'active-nav text-white bg-white/[0.1]' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
+
+            <i class="fa-solid fa-file-signature mr-3 w-4 text-sm transition-colors
+        {{ request()->routeIs('leaves') ? 'text-white' : 'group-hover:text-[#8AB85A]' }}"></i>
+
+            Leaves
+        </a>
         {{-- Org Chart --}}
         <a href="#"
             class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
