@@ -55,18 +55,15 @@ class DtrReport extends Component
 
         $logs = $query->get();
 
-        // Load employees map: code => full name
         $employeeMap = Employee::whereNotNull('employee_code')
             ->get(['employee_code', 'lastname', 'firstname', 'middlename'])
             ->keyBy('employee_code');
 
-        // Group logs: employee_code → date → [times]
         $grouped = [];
         foreach ($logs as $log) {
             $emp = $log->employee_code;
             $date = $log->log_time->format('Y-m-d');
             $time = $log->log_time->format('H:i');
-
             $grouped[$emp][$date][] = $time;
         }
 
@@ -84,11 +81,38 @@ class DtrReport extends Component
                 $dateKey = $current->format('Y-m-d');
                 $times = $dates[$dateKey] ?? [];
 
+                $timeIn = $times[0] ?? null;
+                $timeOut = count($times) > 1 ? end($times) : null;
+
+                $lateMinutes = 0;
+                $undertimeMinutes = 0;
+                $totalMinutesRendered = 0;
+
+                if ($timeIn && $timeOut) {
+                    $logIn = Carbon::parse($dateKey.' '.$timeIn);
+                    $logOut = Carbon::parse($dateKey.' '.$timeOut);
+
+                    $scheduleIn = Carbon::parse($dateKey.' 08:00:00');
+                    if ($logIn->gt($scheduleIn)) {
+                        $lateMinutes = $logIn->diffInMinutes($scheduleIn);
+                    }
+
+                    $scheduleOut = Carbon::parse($dateKey.' 17:00:00');
+                    if ($logOut->lt($scheduleOut)) {
+                        $undertimeMinutes = $logOut->diffInMinutes($scheduleOut);
+                    }
+
+                    $totalMinutesRendered = $logIn->diffInMinutes($logOut);
+                }
+
                 $rows[] = [
                     'date' => $dateKey,
                     'day' => $current->format('D'),
-                    'time_in' => $times[0] ?? null,
-                    'time_out' => count($times) > 1 ? end($times) : null,
+                    'time_in' => $timeIn,
+                    'time_out' => $timeOut,
+                    'late' => $lateMinutes,
+                    'undertime' => $undertimeMinutes,
+                    'rendered' => $totalMinutesRendered,
                     'all_times' => $times,
                 ];
 
@@ -107,7 +131,6 @@ class DtrReport extends Component
 
     public function render()
     {
-        return view('livewire.dtr.index')
-            ->title('DTR Report');
+        return view('livewire.dtr.index')->title('DTR Report');
     }
 }
