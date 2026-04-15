@@ -90,10 +90,10 @@
 
         <p class="pt-6 pb-1.5 px-4 text-[9px] font-bold text-[#8AB85A]/40 uppercase tracking-widest">Compensation</p>
 
-        {{-- Payroll --}}
-        <a href="#"
-            class="group flex items-center px-4 py-2.5 text-sm font-medium text-white/50 hover:text-white hover:bg-white/[0.06] rounded-xl transition-all">
-            <i class="fa-solid fa-peso-sign mr-3 w-4 text-sm transition-colors group-hover:text-[#8AB85A]"></i>
+        <a href="{{ route('payroll') }}" wire:navigate
+            class="group flex items-center px-4 py-2.5 text-sm font-medium rounded-xl transition-all
+        {{ request()->routeIs('payroll') ? 'active-nav text-white bg-white/[0.1]' : 'text-white/50 hover:text-white hover:bg-white/[0.06]' }}">
+            <i class="fa-solid fa-money-check-dollar mr-3 w-4 text-sm transition-colors"></i>
             Payroll
         </a>
 
