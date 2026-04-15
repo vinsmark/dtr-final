@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\UserRole;
+use App\Http\Controllers\DtrDownloadController;
 use App\Livewire\AdminDashboard;
 use App\Livewire\AttendanceReport;
 use App\Livewire\Attendances;
@@ -51,4 +52,7 @@ Route::get('/leaves', LeaveManager::class)->name('leaves');
 Route::get('/overtime', OvertimeManager::class)->name('overtime');
 Route::get('/payroll', PayrollManager::class)->name('payroll');
 Route::get('/employee/{id}/profile', EmployeeProfile::class)->name('employee.profile');
+
+Route::get('/dtr/download/single', [DtrDownloadController::class, 'single'])->name('dtr.download');
+Route::get('/dtr/download/all', [DtrDownloadController::class, 'all'])->name('dtr.download-all');
 require __DIR__.'/settings.php';
