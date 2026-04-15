@@ -169,11 +169,21 @@
                     </span>
                 </x-table.td>
                 <x-table.td class="text-right">
-                    <div class="flex justify-end gap-3">
+                    <div class="flex justify-end gap-3 items-center">
+                        <a href="{{ route('employee.profile', $employee->id) }}" wire:navigate
+                            class="text-[11px] font-black uppercase tracking-wider text-[#180C04] bg-[#F5EFE8] px-2 py-1 rounded hover:bg-[#D4C4A8] transition-all">
+                            201 FILE
+                        </a>
+
                         <button wire:click="edit({{ $employee->id }})"
-                            class="text-[11px] font-black uppercase tracking-wider text-[#4A7A28] hover:underline">Edit</button>
+                            class="text-[11px] font-black uppercase tracking-wider text-[#4A7A28] hover:underline">
+                            Edit
+                        </button>
+
                         <button wire:click="confirmDelete({{ $employee->id }})"
-                            class="text-[11px] font-black uppercase tracking-wider text-red-500 hover:underline">Delete</button>
+                            class="text-[11px] font-black uppercase tracking-wider text-red-500 hover:underline">
+                            Delete
+                        </button>
                     </div>
                 </x-table.td>
             </x-table.tr>

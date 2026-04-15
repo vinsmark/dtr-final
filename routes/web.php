@@ -5,6 +5,7 @@ use App\Livewire\AdminDashboard;
 use App\Livewire\AttendanceReport;
 use App\Livewire\Attendances;
 use App\Livewire\DtrReport;
+use App\Livewire\EmployeeProfile;
 use App\Livewire\Employees;
 use App\Livewire\EmployeeUpload;
 use App\Livewire\HolidayManager;
@@ -49,5 +50,5 @@ Route::get('/holidays', HolidayManager::class)->name('holidays');
 Route::get('/leaves', LeaveManager::class)->name('leaves');
 Route::get('/overtime', OvertimeManager::class)->name('overtime');
 Route::get('/payroll', PayrollManager::class)->name('payroll');
-
+Route::get('/employee/{id}/profile', EmployeeProfile::class)->name('employee.profile');
 require __DIR__.'/settings.php';

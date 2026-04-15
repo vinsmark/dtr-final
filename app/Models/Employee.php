@@ -30,4 +30,14 @@ class Employee extends Model
         'fiesta_date' => 'date',
         'active' => 'boolean',
     ];
+
+    public function attachments()
+    {
+        return $this->hasMany(EmployeeAttachment::class);
+    }
+
+    public function dependents()
+    {
+        return $this->hasMany(EmployeeDependent::class);
+    }
 }
